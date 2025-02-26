@@ -8,9 +8,19 @@
     nixpkgs,
   }: let
     system = "x86_64-linux";
+    inherit (nixpkgs) lib;
     pkgs = import nixpkgs {
       inherit system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfreePredicate = pkg:
+          builtins.elem (lib.getName pkg) [
+            "vintagestory"
+            "vs-launcher"
+          ];
+        permittedInsecurePackages = [
+          "dotnet-runtime-7.0.20"
+        ];
+      };
     };
     packages = self.packages.${system};
   in {
@@ -21,8 +31,7 @@
       // import ./tools pkgs
       // import ./packages {
         inherit (self.lib) builders;
-        inherit (nixpkgs) lib;
-        inherit packages;
+        inherit packages lib;
       };
 
     homeManagerModules =
