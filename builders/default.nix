@@ -16,7 +16,7 @@ pkgs: rec {
   # The original `$out/share/vintagestory/Vintagestory` is renamed to `Vintagestory-unwrapped`.
   #
   # mkMerged pkgs.vintagestory
-  # => <Vintage Story derivation >
+  # => <modified Vintage Story derivation>
   mkMerged = vs: pkgs.callPackage (import ./mk-merged.nix vs) {};
 
   # Wrapper function for the wrapper functions above
