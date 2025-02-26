@@ -17,7 +17,7 @@
     lib.builders = import ./builders pkgs;
 
     packages.${system} =
-      {default = packages.latest;}
+      {default = packages.net7.latest;}
       // import ./tools pkgs
       // import ./packages {
         inherit (self.lib) builders;

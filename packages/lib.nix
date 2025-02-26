@@ -7,23 +7,26 @@
   normalizeVersion = builtins.replaceStrings ["."] ["-"];
 
 
+  recursiveMergeAttrsList = builtins.foldl' (acc: attr: lib.attrsets.recursiveUpdate acc attr) {};
+
+
   mkVSVersion = {
     version,
     hash,
   }: let
     v = normalizeVersion version;
     attrs = {
-      "v${v}" = builders.mkVintageStory {inherit version hash;};
-      "v${v}-m" = builders.mkMerged attrs."v${v}";
-      "v${v}-net8" = builders.mkDotnet8 attrs."v${v}";
-      "v${v}-net8-m" = builders.mkMerged attrs."v${v}-net8";
+      net7."v${v}" = builders.mkVintageStory {inherit version hash;};
+      net7."v${v}-m" = builders.mkMerged attrs.net7."v${v}";
+      net8."v${v}" = builders.mkDotnet8 attrs.net7."v${v}";
+      net8."v${v}-m" = builders.mkMerged attrs.net8."v${v}";
     };
   in
     attrs;
 
 
   mkMinorVersion = versions: let
-    getVersion = set: (builtins.head (builtins.attrValues set)).version;
+    getVersion = set: (builtins.head (builtins.attrValues set.net7)).version;
 
     highestVersionSet =
       builtins.foldl' (
@@ -42,12 +45,12 @@
     highestVersion = normalizeVersion highestVersionSet.version;
 
     latestVersion = {
-      "v${majorMinor}" = highestVersionSet."v${highestVersion}";
-      "v${majorMinor}-m" = highestVersionSet."v${highestVersion}-m";
-      "v${majorMinor}-net8" = highestVersionSet."v${highestVersion}-net8";
-      "v${majorMinor}-net8-m" = highestVersionSet."v${highestVersion}-net8-m";
+      net7."v${majorMinor}" = highestVersionSet.net7."v${highestVersion}";
+      net7."v${majorMinor}-m" = highestVersionSet.net7."v${highestVersion}-m";
+      net8."v${majorMinor}" = highestVersionSet.net8."v${highestVersion}";
+      net8."v${majorMinor}-m" = highestVersionSet.net8."v${highestVersion}-m";
     };
-    merged = latestVersion // lib.mergeAttrsList versions;
+    merged = recursiveMergeAttrsList ([latestVersion] ++ versions);
   in
     merged;
 
@@ -55,9 +58,16 @@
   mkLatest = version: let
     v = normalizeVersion (lib.versions.majorMinor version);
   in {
-    latest = packages."v${v}";
-    latest-m = packages."v${v}-m";
-    latest-net8 = packages."v${v}-net8";
-    latest-net8-m = packages."v${v}-net8-m";
+    net7.latest = packages.net7."v${v}";
+    net7.latest-m = packages.net7."v${v}-m";
+    net8.latest = packages.net8."v${v}";
+    net8.latest-m = packages.net8."v${v}-m";
   };
-in {inherit mkVSVersion mkMinorVersion mkLatest;}
+in {
+  inherit
+    recursiveMergeAttrsList
+    mkVSVersion
+    mkMinorVersion
+    mkLatest
+    ;
+}
