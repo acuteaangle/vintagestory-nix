@@ -4,11 +4,11 @@
 , fetchurl
 }: let
   pname = "vs-launcher";
-  version = "1.3.0";
+  version = "1.3.2";
 
   appImageSrc = fetchurl {
     url = "https://github.com/XurxoMF/vs-launcher/releases/download/${version}/vs-launcher-${version}.AppImage";
-    sha256 = "sha256-QhGrbooF5asxlUzcijTj6vzARHC3q4uR2THV2tLDKnI=";
+    sha256 = "sha256-vq/j8LsZiyDQs3V6hNaG4Qhf0jvTQROGSaF2wBYMjT0=";
   };
 
   appimageContents = appimageTools.extractType2 {
