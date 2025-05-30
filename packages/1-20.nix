@@ -1,5 +1,9 @@
 mkVSVersion: [
   (mkVSVersion {
+    version = "1.20.11";
+    hash = "sha256-IOreg6j/jLhOK8jm2AgSnYQrql5R6QxsshvPs8OUcQA=";
+  })
+  (mkVSVersion {
     version = "1.20.10";
     hash = "sha256-AMXnq6fy1AtwmdhuuEawlWIyS4kq10HkgxnqgArqWR4=";
   })
