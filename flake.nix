@@ -37,5 +37,13 @@
     homeManagerModules =
       {default = self.homeManagerModules.all;}
       // import ./tools/hm.nix {inherit packages;};
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          prefetch-npm-deps
+          nix-prefetch
+          nodejs
+        ];
+      };
   };
 }

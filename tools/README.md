@@ -7,9 +7,6 @@
 
 This directory contains packages for some modding tools.
 
-> [!WARNING]
-> These tools are poorly packaged, although they are *usable*, they may not work properly.
-
 ## Packages
 ```Nix
 {inputs, ...}: let
@@ -62,10 +59,3 @@ in {
 > One way to reduce that usage is by only using "-m" packages.<br>
 > `home.packages = [VSPkgs.latest-m];` because <kbd>v1-20-4</kbd> != <kbd>v1-20-4-m</kbd>.
 > There shouldn't be any drawbacks.
-
-> [!WARNING]
-> Currently, launching VS Launcher with an application launcher (through the .desktop file)
-> doesn't summon a window.
-> The process is there, but no window will appear.
->
-> Launching it from a terminal (`vs-launcher`) does work without issues but I need to investigate.

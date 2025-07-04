@@ -6,17 +6,13 @@
 ---
 
 <p align="center">
-A comprehensive (WIP) Nix flake to help you in your
+A flake to help you on your
 <a href="https://www.vintagestory.at">Vintage Story</a> journey on NixOS.
 <br><br><b>📚 Docs:</b><br>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/packages"><b>✨Packages</b></a></kbd>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/tools"><b>🔧Tools</b></a></kbd>
 <kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/packages"><b>🔨Builders</b></a></kbd>
 </p>
-
-> [!WARNING]
-> **vintagestory-nix** is highly work-in-progress, things may not work but game packages
-> should be moslty fine.
 
 ## Features
 
@@ -26,12 +22,6 @@ A comprehensive (WIP) Nix flake to help you in your
 
 ### 🔧 Modding tools with Home Manager modules
 - VS Launcher: [github](https://github.com/XurxoMF/vs-launcher) - [moddb](https://mods.vintagestory.at/show/mod/16326) - Proprietary
-
-
-> [!WARNING]
-> These tools are poorly packaged, and although they are usable, they may not work properly.<br>
-> See [the docs](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools) for more infos
-> and known issues.
 
 ## Adding to the flake's inputs
 ```Nix
