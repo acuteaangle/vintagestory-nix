@@ -69,10 +69,3 @@ in {
 > The process is there, but no window will appear.
 >
 > Launching it from a terminal (`vs-launcher`) does work without issues but I need to investigate.
-
-## VS ModsUpdater
-VS ModsUpdater is in a state where it can't really be configured or used correctly on NixOS.
-
-Executing it will result in a bunch of files being created in $PWD.
-
-This is mainly here for testing purposes, you should ignore it.

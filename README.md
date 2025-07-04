@@ -26,7 +26,6 @@ A comprehensive (WIP) Nix flake to help you in your
 
 ### 🔧 Modding tools with Home Manager modules
 - VS Launcher: [github](https://github.com/XurxoMF/vs-launcher) - [moddb](https://mods.vintagestory.at/show/mod/16326) - Proprietary
-- VS ModsUpdater: [github](https://github.com/Laerinok/VS_ModsUpdater) - [moddb](https://mods.vintagestory.at/show/mod/7341) - MIT
 
 
 > [!WARNING]
@@ -46,4 +45,3 @@ inputs = {
 
 ## Thanks
 - to [XurxoMF](https://github.com/XurxoMF) for making VS Launcher
-- to [Laerinok](https://github.com/Laerinok) for making VS ModsUpdater
