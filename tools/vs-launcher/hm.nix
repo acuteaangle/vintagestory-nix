@@ -26,9 +26,16 @@ in {
     home.packages = [vs-launcher];
 
     home.file = builtins.listToAttrs (builtins.map (
-        vintagestory: {
+        vintagestory: let
+          merged = vintagestory.overrideAttrs {
+            postFixup = ''
+              mv $out/share/vintagestory/Vintagestory $out/share/vintagestory/Vintagestory-unwrapped
+              ln -s $out/bin/vintagestory $out/share/vintagestory/Vintagestory
+            '';
+          };
+        in {
           name = "${cfg.gameVersionsDir}/${vintagestory.version}";
-          value.source = "${vintagestory}/share/vintagestory";
+          value.source = "${merged}/share/vintagestory";
         }
       )
       cfg.installedVersions);

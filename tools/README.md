@@ -34,14 +34,13 @@ in {
     # Change the directory, relative to $HOME,
     # in which to link installed versions
     gameVersionsDir = ".config/VSLGameVersions"; # default
-    # Derivations installed here have to use the "-m" suffix
     installedVersions = with VSPkgs; [
       # Current version I'm playing on with mods
-      v1-20-4-m
+      v1-20-4
 
       # I have an active save with some friends
       # I don't want to mess with updating mods
-      v1-19-8-m
+      v1-19-8
     ];
   };
 
@@ -53,9 +52,3 @@ in {
 > [!IMPORTANT]
 > Game versions installed using `installedVersions` have to be manually registered inside VSL.
 > I do plan to make this automatic tho.
-
-> [!TIP]
-> Having multiple versions of the game obviously eats more space.<br>
-> One way to reduce that usage is by only using "-m" packages.<br>
-> `home.packages = [VSPkgs.latest-m];` because <kbd>v1-20-4</kbd> != <kbd>v1-20-4-m</kbd>.
-> There shouldn't be any drawbacks.

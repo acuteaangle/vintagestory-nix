@@ -33,26 +33,6 @@ in [
 ]
 ```
 
-## Special "merged" packages
-Every package comes with a "merged" version, that has the following differences:
-
-- `<vintagestory>/share/vintagestory/Vintagestory` is renamed `Vintagestory-unwrapped`.
-- `<vintagestory>/bin/vintagestory` is copied to replace the previous executable.
-
-This is usefull to some tools that needs to access the full game's directory and launch it through its executable.
-
-Currently, only used for VS Launcher.
-
-```Nix
-{inputs, ...}: let
-  VSPkgs = inputs.vintagestory-nix.packages.${system}.net8;
-in [
-  VSPkgs.v1-20-4-m
-  VSPkgs.v1-20-m
-  VSPkgs.latest-m
-]
-```
-
 ## Complete list of all packages
 You can get a full list of all packages using `nix repl`'s autocompletion.
 

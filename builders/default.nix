@@ -11,14 +11,6 @@ pkgs: rec {
   # => <Vintage Story derivation that uses .NET 8>
   mkDotnet8 = vs: pkgs.callPackage (import ./mk-dotnet-8.nix vs) {};
 
-  # Wrapper function to replace the game's default executable with the one wrapped by Nix,
-  # such as `$out/share/vintagestory/Vintagestory` is the same as `$out/bin/vintagestory`.
-  # The original `$out/share/vintagestory/Vintagestory` is renamed to `Vintagestory-unwrapped`.
-  #
-  # mkMerged pkgs.vintagestory
-  # => <modified Vintage Story derivation>
-  mkMerged = vs: pkgs.callPackage (import ./mk-merged.nix vs) {};
-
   # Wrapper function for the wrapper functions above
   mkVintageStoryNet8 = set: mkDotnet8 (mkVintageStory set);
 }
