@@ -43,10 +43,8 @@
       net7."v${majorMinor}" = highestVersionSet.net7."v${highestVersion}";
       net8."v${majorMinor}" = highestVersionSet.net8."v${highestVersion}";
     };
-    merged = recursiveMergeAttrsList ([latestVersion] ++ versions);
   in
-    merged;
-
+    recursiveMergeAttrsList ([latestVersion] ++ versions);
 
   mkLatest = version: let
     v = normalizeVersion (lib.versions.majorMinor version);

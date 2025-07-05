@@ -1,7 +1,7 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  fetchzip,
   makeWrapper,
   makeDesktopItem,
   copyDesktopItems,
@@ -17,26 +17,28 @@
   pipewire,
   libpulseaudio,
   dotnet-runtime_7,
-
   version,
   hash,
-}: stdenv.mkDerivation rec {
+}:
+stdenv.mkDerivation {
   pname = "vintagestory";
   inherit version;
 
-  src = fetchurl {
-    url = "https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_${version}.tar.gz";
-    inherit hash;
-  };
+  src = let
+    hasType = lib.hasSuffix "sha256-" hash;
+  in
+    fetchzip {
+      url = "https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_${version}.tar.gz";
+      hash = lib.optionalString hasType hash;
+      sha256 = lib.optionalString (! hasType) hash;
+    };
 
   nativeBuildInputs = [
     makeWrapper
     copyDesktopItems
   ];
 
-  buildInputs = [ dotnet-runtime_7 ];
-
-  runtimeLibs = lib.makeLibraryPath (
+  env.runtimeLibs = lib.makeLibraryPath (
     [
       gtk2
       sqlite
@@ -63,7 +65,7 @@
       exec = "vintagestory";
       icon = "vintagestory";
       comment = "Innovate and explore in a sandbox world";
-      categories = [ "Game" ];
+      categories = ["Game"];
     })
   ];
 
@@ -75,28 +77,35 @@
     cp $out/share/vintagestory/assets/gameicon.xpm $out/share/pixmaps/vintagestory.xpm
     cp $out/share/vintagestory/assets/game/fonts/*.ttf $out/share/fonts/truetype
 
+    rm -rvf $out/share/vintagestory/{install,run,server}.sh
+
     runHook postInstall
   '';
 
-  preFixup =
-    ''
-      makeWrapper ${dotnet-runtime_7}/bin/dotnet $out/bin/vintagestory \
-        --prefix LD_LIBRARY_PATH : "${runtimeLibs}" \
-        --add-flags $out/share/vintagestory/Vintagestory.dll
-      makeWrapper ${dotnet-runtime_7}/bin/dotnet $out/bin/vintagestory-server \
-        --prefix LD_LIBRARY_PATH : "${runtimeLibs}" \
-        --add-flags $out/share/vintagestory/VintagestoryServer.dll
-    ''
-    + ''
-      find "$out/share/vintagestory/assets/" -not -path "*/fonts/*" -regex ".*/.*[A-Z].*" | while read -r file; do
-        local filename="$(basename -- "$file")"
-        ln -sf "$filename" "''${file%/*}"/"''${filename,,}"
-      done
+  preFixup = let
+    wrapperFlags = lib.trim ''
+      --prefix LD_LIBRARY_PATH : "''${runtimeLibs[@]}" \
+      --set-default mesa_glthread true
     '';
+  in ''
+    makeWrapper ${lib.getExe dotnet-runtime_7} $out/bin/vintagestory \
+      ${wrapperFlags} \
+      --add-flags $out/share/vintagestory/Vintagestory.dll
+    makeWrapper ${lib.getExe dotnet-runtime_7} $out/bin/vintagestory-server \
+      ${wrapperFlags} \
+      --add-flags $out/share/vintagestory/VintagestoryServer.dll
 
-  meta = with lib; {
+    find "$out/share/vintagestory/assets/" -not -path "*/fonts/*" -regex ".*/.*[A-Z].*" | while read -r file; do
+      local filename="$(basename -- "$file")"
+      ln -sf "$filename" "''${file%/*}"/"''${filename,,}"
+    done
+  '';
+
+  meta = {
     description = "In-development indie sandbox game about innovation and exploration";
     homepage = "https://www.vintagestory.at";
-    license = licenses.unfree;
+    license = lib.licenses.unfree;
+    sourceProvenance = [lib.sourceTypes.binaryBytecode];
+    mainProgram = "vintagestory";
   };
 }

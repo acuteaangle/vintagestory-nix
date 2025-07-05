@@ -1,34 +1,34 @@
 mkVSVersion: [
   (mkVSVersion {
     version = "1.19.8";
-    hash = "sha256-R6J+ACYDQpOzJZFBizsQGOexR7lMyeoZqz9TnWxfwyM=";
+    hash = "1lni0gbdzv6435n3wranbcmw9mysvnipz7f3v4lprjrsmgiirvd4";
   })
   (mkVSVersion {
     version = "1.19.7";
-    hash = "sha256-C+vPsoMlo6EKmzf+XkvIhrDGG7EccU8c36GZt0/1r1Q=";
+    hash = "134xbghz4ar8nvsjc0rmlls89f0aa4dbkw6jyim0y2jg04p4dn4f";
   })
   (mkVSVersion {
     version = "1.19.6";
-    hash = "sha256-nD1WHDfplyBTv1F7osYsYPIBx9/T5MxXmU0XnmPG+mM=";
+    hash = "0i64rva3z4ss54cbjl79fmb2jdq3rjh35baapdzsfykp0swi7k8y";
   })
   (mkVSVersion {
     version = "1.19.5";
-    hash = "sha256-noweIb+lZhme1kEjU2+tIc0E99iShNngxEEyDMKJcpk=";
+    hash = "0jf51p9vlvnw8a5gbi5y8328drg238ldridqaj4r0075mpsff264";
   })
   (mkVSVersion {
     version = "1.19.4";
-    hash = "sha256-A5NIWy902a0W/Y/sJL+qPrEJwCiU/TNIm7G3BtU6gzM=";
+    hash = "1py87i3fffrwdizr2d8040z6la8ai9yws01bvmx9vwjfyvkvzj4b";
   })
   (mkVSVersion {
     version = "1.19.3";
-    hash = "sha256-ULxwNdQLQCWJqCTiGtT1X/Y32f406FT/UPAJNBYrV/s=";
+    hash = "18n6vhl3jv9l7pm31snc1y4nxysdykm1sf7xjiqrhgcsvhq59f1g";
   })
   (mkVSVersion {
     version = "1.19.2";
-    hash = "sha256-iCvgmZdJLahkmUa+oWiGvuEkL6TQUlUGM6i1jGx6dmI=";
+    hash = "0jn5w7gvw28hcvm8pbmkwacydh751xhx92r7glcv9hlj460akzqn";
   })
   (mkVSVersion {
     version = "1.19.1";
-    hash = "sha256-PrsClGSXTah5kkhww7slfkwpo0gJryf6pm61LsCYbiE=";
+    hash = "16f4x3l5h173lq1l6ywywxfmpp3acw225hp36kd02hiid8y2z9dr";
   })
 ]

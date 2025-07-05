@@ -1,35 +1,35 @@
 mkVSVersion: [
   (mkVSVersion {
     version = "1.18.15";
-    hash = "sha256-luZwRKVptSd69tCaf6Jv0YOfwOeDOcuY7VoL+21tTEo=";
+    hash = "0syy29683hvf3wvz44gaq2lib3q07zmhdxkwxhdpxvw7cjnaf1l2";
   })
   (mkVSVersion {
     version = "1.18.14";
-    hash = "sha256-PxSi+X16ARs4Ggw1jB9xBl2hk4vnlqVxnSv6VQ9jtFo=";
+    hash = "04kr1jfdw95jf4j9cgk699z951yqwdx6nz2pvci7734cw7n37shp";
   })
   (mkVSVersion {
     version = "1.18.13";
-    hash = "sha256-2+38tiwKC/OQaTW84+2/VF4+AxfZa5FulP+QAGcRj+I=";
+    hash = "1drrv3d5fg90a9i5zzzib0bagk79ps5l5rbjqxwbz9i3898iacj1";
   })
   (mkVSVersion {
     version = "1.18.12";
-    hash = "sha256-akeW03+IdRvt3Fs3gF6TcYv9gD33DHPtpmiiMa0b92k=";
+    hash = "0lrvzshqmx916xh32c6y30idqpmfi6my6w26l3h32y7lkx26whc6";
   })
   (mkVSVersion {
     version = "1.18.11";
-    hash = "sha256-btP6ny36Q9ZfzOiAZu9pQpRkSUpWh7Qhh7cbJSMbf9o=";
+    hash = "sha256-hEz5dC4ftFS0QYpcuChxkXYX2Bjr6mwJ3qcnBQNmaFY=";
   })
   (mkVSVersion {
     version = "1.18.10";
-    hash = "sha256-xkpoVFZWlqhSSDn62MbhBYU6X+l5MmPxtrewg9xKuJc=";
+    hash = "sha256-HR5eoNkY6BVYNtIDyDKSoWwSde9MpObw+IdKXGZhj70=";
   })
   (mkVSVersion {
     version = "1.18.9";
-    hash = "sha256-Ul2+3Aasm3BZpbPS2aPrIUkO3Sky6gEfMHkxZYTewt4=";
+    hash = "sha256-w+BD7vi8xsGO9db2wzgHdBiSZsW8CpimC/8TugNOjhE=";
   })
   (mkVSVersion {
     version = "1.18.8";
-    hash = "sha256-q7MxmsWCGODOt/hCkCPz964m7az27SddIRBJ1vYg02k=";
+    hash = "sha256-cBP+nqaIq7dIcKyyIuw/w0q5/lhcClOZ9N/O1Kuu2qk=";
   })
   # Versions past this used to have a different derivation in nixpkgs.
   # Hopefully, no one needs such old versions, I don't see why bother packaging them.
