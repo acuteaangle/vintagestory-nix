@@ -5,39 +5,44 @@
 
 ---
 
-This directory contains all the Vintage Story packages.
-
-## .NET 7 is EOL, long live .NET 8
-Currently, Vintage Story uses .NET 7, which has reached End-Of-Life.
-
-This means that trying to install the game using Nix results in an
-error because .NET 7 is marked as insecure.
-
-This flake provides two namespaces for Vintage Story packages.
-- <kbd>.net7</kbd> for "vanilla" packages, built the same way as in nixpkgs.
-- <kbd>.net8</kbd> for packages patched to use .NET 8 instead.
+<p align="center">
+This directory contains all the packaged Vintage Story versions.
+<br><br><b>🧭 Navigation</b><br>
+<kbd><a href="https://github.com/PierreBorine/vintagestory-nix"><b>🏠Home</b></a></kbd>
+<kbd><a href="https://github.com/PierreBorine/vintagestory-nix/tree/master/tools"><b>🔧Tools</b></a></kbd>
+</p>
 
 ## Usage
-```Nix
+```nix
 {inputs, ...}: let
-  # Access the set of package you want, either `net7` or `net8`
-  VSPkgs = inputs.vintagestory-nix.packages.${system}.net8;
+  VSPkgs = inputs.vintagestory-nix.packages.x86_64-linux;
 in [
-  # Select a specific, fixed version
+  # Select a specific, fixed version.
   VSPkgs.v1-20-4
-  # Select a major version
-  # Will get updated if a new patch of that version is released
+
+  # Select a minor version.
+  # Will get updated if a new patch of that version is packaged.
   VSPkgs.v1-20
-  # Select the latest released version
+
+  # Select the latest packaged version.
   VSPkgs.latest
+
+  # Select a .NET8 patched version
+  VSPkgs.v1-19-7-net8
+  VSPkgs.v1-20-net8
 ]
 ```
 
-## Complete list of all packages
-You can get a full list of all packages using `nix repl`'s autocompletion.
-
+Get the full list using using the following command:
 ```sh
-nix repl
-:lf github:PierreBorine/vintagestory-nix
-packages.x86_64-linux.net8.<TAB> # press tab
+nix flake show github:PierreBorine/vintagestory-nix
 ```
+
+### "`-net8`" packages
+Because .NET 7 has reached End-Of-Life on the 14th of May 2024, it is marked as insecure on nixpkgs.
+
+This means that trying to install the game throws an error if you didn't add `dotnet-runtime-7.0.20` to your `permittedInsecurePackages`.
+
+This flake provides packages suffixed with `-net8` for versions up to 1.20.12 that subtitute .NET7 with .NET8.
+
+I did not encounter issues in my playtime with these packages so I assume they are safe to use.

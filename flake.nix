@@ -1,5 +1,5 @@
 {
-  description = "WIP Nix flake to make your Vintage Story journey easier on NixOS";
+  description = "A flake to help you on your Vintage Story journey on NixOS";
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
