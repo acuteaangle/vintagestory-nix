@@ -1,13 +1,22 @@
-vs-launcher: {
+packages: {
   config,
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit
+    (lib)
+    mkIf
+    mkEnableOption
+    mkPackageOption
+    mkOption
+    types
+    ;
   cfg = config.programs.vs-launcher;
 in {
   options.programs.vs-launcher = {
     enable = mkEnableOption "VS Launcher";
+
+    package = mkPackageOption packages "vs-launcher" {};
 
     gameVersionsDir = mkOption {
       type = types.str;
@@ -23,7 +32,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    home.packages = [vs-launcher];
+    home.packages = [cfg.package];
 
     home.file = builtins.listToAttrs (builtins.map (
         vintagestory: let
