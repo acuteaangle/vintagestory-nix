@@ -38,6 +38,17 @@
         inherit packages lib;
       };
 
+    overlays.default = final: prev: {
+      vintagestoryPackages =
+        {default = final.vintagestoryPackages.latest;}
+        // import ./tools prev
+        // import ./packages {
+          packages = final.vintagestoryPackages;
+          builders = import ./builders prev;
+          inherit (prev) lib;
+        };
+    };
+
     homeModules =
       {default = self.homeModules.all;}
       // import ./tools/hm.nix {inherit packages;};
