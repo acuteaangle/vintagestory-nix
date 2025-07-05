@@ -38,16 +38,24 @@
         inherit packages lib;
       };
 
-    homeManagerModules =
-      {default = self.homeManagerModules.all;}
+    homeModules =
+      {default = self.homeModules.all;}
       // import ./tools/hm.nix {inherit packages;};
 
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          prefetch-npm-deps
-          nix-prefetch
-          nodejs
-        ];
-      };
+    homeManagerModules = let
+      deprecateTo = builtins.warn "vintagestory-nix: `homeManagerModules` is deprecated, please use `homeModules` instead.";
+    in {
+      default = deprecateTo self.homeModules.default;
+      all = deprecateTo self.homeModules.all;
+      vs-launcher = deprecateTo self.homeModules.vs-launcher;
+    };
+
+    devShells.${system}.default = pkgs.mkShell {
+      packages = with pkgs; [
+        prefetch-npm-deps
+        nix-prefetch
+        nodejs
+      ];
+    };
   };
 }
