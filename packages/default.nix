@@ -3,18 +3,15 @@
   packages,
   lib,
 }: let
-  extraLibs = import ./lib.nix {inherit builders packages lib;};
-  inherit
-    (extraLibs)
-    recursiveMergeAttrsList
-    mkVSVersion
-    mkMinorVersion
-    mkLatest
-    ;
+  # common libs
+  clib = import ./libs {inherit packages lib;};
+  v1 = import ./libs/v1.nix {inherit builders clib lib;};
+
+  inherit (clib) recursiveMergeAttrsList mkLatest;
 in
   recursiveMergeAttrsList [
     (mkLatest "1.20") # Must be changed manually
-    (mkMinorVersion (import ./1-20.nix mkVSVersion))
-    (mkMinorVersion (import ./1-19.nix mkVSVersion))
-    (mkMinorVersion (import ./1-18.nix mkVSVersion))
+    (v1.mkMinorVersion (import ./1-20.nix v1.mkVSVersion))
+    (v1.mkMinorVersion (import ./1-19.nix v1.mkVSVersion))
+    (v1.mkMinorVersion (import ./1-18.nix v1.mkVSVersion))
   ]
