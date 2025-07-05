@@ -14,14 +14,14 @@
   }: let
     v = normalizeVersion version;
     attrs = {
-      net7."v${v}" = builders.mkVintageStory {inherit version hash;};
-      net8."v${v}" = builders.mkDotnet8 attrs.net7."v${v}";
+      "v${v}" = builders.mkVintageStory {inherit version hash;};
+      "v${v}-net8" = builders.mkDotnet8 attrs."v${v}";
     };
   in
     attrs;
 
   mkMinorVersion = versions: let
-    getVersion = set: (builtins.head (builtins.attrValues set.net7)).version;
+    getVersion = set: (builtins.head (builtins.attrValues set)).version;
 
     highestVersionSet =
       builtins.foldl' (
@@ -40,8 +40,8 @@
     highestVersion = normalizeVersion highestVersionSet.version;
 
     latestVersion = {
-      net7."v${majorMinor}" = highestVersionSet.net7."v${highestVersion}";
-      net8."v${majorMinor}" = highestVersionSet.net8."v${highestVersion}";
+      "v${majorMinor}" = highestVersionSet."v${highestVersion}";
+      "v${majorMinor}-net8" = highestVersionSet."v${highestVersion}-net8";
     };
   in
     recursiveMergeAttrsList ([latestVersion] ++ versions);
@@ -49,8 +49,8 @@
   mkLatest = version: let
     v = normalizeVersion (lib.versions.majorMinor version);
   in {
-    net7.latest = packages.net7."v${v}";
-    net8.latest = packages.net8."v${v}";
+    latest = packages."v${v}";
+    latest-net8 = packages."v${v}-net8";
   };
 in {
   inherit

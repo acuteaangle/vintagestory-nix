@@ -1,5 +1,3 @@
 pkgs: {
-  tools = {
-    vs-launcher = pkgs.callPackage ./vs-launcher {};
-  };
+  vs-launcher = pkgs.callPackage ./vs-launcher {};
 }

@@ -16,6 +16,7 @@
           builtins.elem (lib.getName pkg) [
             "vintagestory"
             "vs-launcher"
+            "rustory"
           ];
         permittedInsecurePackages = [
           "dotnet-runtime-7.0.20"
@@ -27,7 +28,7 @@
     lib.builders = import ./builders pkgs;
 
     packages.${system} =
-      {default = packages.net7.latest;}
+      {default = packages.latest;}
       // import ./tools pkgs
       // import ./packages {
         inherit (self.lib) builders;
