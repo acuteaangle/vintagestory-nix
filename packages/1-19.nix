@@ -31,4 +31,8 @@ mkVSVersion: [
     version = "1.19.1";
     hash = "16f4x3l5h173lq1l6ywywxfmpp3acw225hp36kd02hiid8y2z9dr";
   })
+  (mkVSVersion {
+    version = "1.19.0";
+    hash = "1g5nvg7yh5miy128kl0xhflkd1dzmrf8wa5y0i83wiz432m72f8p";
+  })
 ]
