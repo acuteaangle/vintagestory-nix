@@ -25,7 +25,10 @@
     };
     packages = self.packages.${system};
   in {
-    lib.builders = import ./builders pkgs;
+    lib = {
+      builders = import ./builders pkgs;
+      inherit (self.lib.builders) mkVintageStory;
+    };
 
     packages.${system} =
       {default = packages.latest;}
