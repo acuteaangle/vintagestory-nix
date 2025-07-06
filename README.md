@@ -29,6 +29,7 @@ nix flake show github:PierreBorine/vintagestory-nix
 ## Usage
 Add this flake as an input to yours
 ```nix
+# flake.nix
 inputs = {
   vintagestory-nix = {
     url = "github:PierreBorine/vintagestory-nix";
@@ -37,23 +38,48 @@ inputs = {
 };
 ```
 
-### A new Vintage Story version is out and I want it now !
-You can install pretty much any version with the `mkVintageStory` function.
-
-Do note that this method may not work if the new version got substantial changes
-to the point it requiers an updated derivation.
+Add the overlay
 ```nix
+# configuration.nix
 {inputs, ...}: {
+  nixpkgs.overlays = [inputs.vintagestory-nix.overlays.default];
+}
+```
+
+### Vintage Story packages
+See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/master/packages) for more complete docs.
+```nix
+{pkgs, ...}: {
   home.packages = [
-    (inputs.vintagestory-nix.lib.mkVintageStory {
-      version = "1.24.8";
-      hash = "sha256-Hgp2u/y2uPnJhAmPpwof76/woFGz4ISUXU+FIRMjMuQ=";
-    })
+    pkgs.vintagestoryPackages.v1-20-12
+    pkgs.vintagestoryPackages.v1-19
+    pkgs.vintagestoryPackages.latest
   ];
 }
 ```
 
+### Modding Tools
+See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools) for more complete docs.
+```nix
+{inputs, pkgs, ...}: {
+  imports = [inputs.vintagestory-nix.homeManagerModules.default];
+
+  home.packages = [
+    pkgs.vintagestoryPackages.vs-launcher
+  ];
+
+  # or
+
+  programs.vs-launcher = {
+    enable = true;
+    installedVersions = [
+      pkgs.vintagestoryPackages.v1-19-4
+    ];
+  };
+}
+```
+
 ## Thanks
-- the [Vintage Story team](https://www.vintagestory.at/aboutus.html) for their incredible game
+- to the [Vintage Story team](https://www.vintagestory.at/aboutus.html) for their incredible game
 - to [XurxoMF](https://github.com/XurxoMF) for making VS Launcher
 - to [Vixenin](https://github.com/NixOS/nixpkgs/issues/360384#issuecomment-2557412151) for the .NET8 trick

@@ -72,3 +72,19 @@ This means that trying to install the game throws an error if you didn't add `do
 This flake provides packages suffixed with `-net8` for versions up to 1.20.12 that subtitute .NET7 with .NET8.
 
 I did not encounter issues in my playtime with these packages so I assume they are safe to use.
+
+## A new Vintage Story version is out and I want it now !
+You can install pretty much any version with the `mkVintageStory` function.
+
+Do note that this method may not work if the new version got substantial changes
+to the point it requiers an updated derivation.
+```nix
+{inputs, ...}: {
+  home.packages = [
+    (inputs.vintagestory-nix.lib.mkVintageStory {
+      version = "1.24.8";
+      hash = "sha256-Hgp2u/y2uPnJhAmPpwof76/woFGz4ISUXU+FIRMjMuQ=";
+    })
+  ];
+}
+```
