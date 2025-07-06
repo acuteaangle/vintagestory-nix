@@ -13,7 +13,14 @@ This directory contains packages and home-manager modules for some modding tools
 </p>
 
 ## Packages
+- `rustique`
 - `vs-launcher`
+
+## Rustique
+[Rustique](https://github.com/Tekunogosu/Rustique) is a Rust command-line interface,
+for managing and updating Vintage Story mods and their dependencies.
+
+It works the same way as an Operating System package manager.
 
 ## VS Launcher
 [VS Launcher](https://github.com/XurxoMF/vs-launcher) is an Electron-based game versions and mods manager.<br>

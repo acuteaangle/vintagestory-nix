@@ -24,6 +24,7 @@ nix flake show github:PierreBorine/vintagestory-nix
 
 #### 🔧 Modding tools with Home Manager modules
 - **VS Launcher** (unfree) - [github](https://github.com/XurxoMF/vs-launcher) - [moddb](https://mods.vintagestory.at/show/mod/16326)
+- **Rustique** (MIT) - [github](https://github.com/Tekunogosu/Rustique) - [moddb](https://mods.vintagestory.at/rustique)
 - More to come...
 
 ## Usage
@@ -65,6 +66,7 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
   imports = [inputs.vintagestory-nix.homeManagerModules.default];
 
   home.packages = [
+    pkgs.vintagestoryPackages.rustique
     pkgs.vintagestoryPackages.vs-launcher
   ];
 
@@ -83,3 +85,4 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
 - to the [Vintage Story team](https://www.vintagestory.at/aboutus.html) for their incredible game
 - to [XurxoMF](https://github.com/XurxoMF) for making VS Launcher
 - to [Vixenin](https://github.com/NixOS/nixpkgs/issues/360384#issuecomment-2557412151) for the .NET8 trick
+- to [dtomvan](https://github.com/dtomvan/vs2nix/blob/main/parts/programs/rustique.nix) for the rustique derivation
