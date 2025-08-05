@@ -7,7 +7,7 @@
 , electron
 }: buildNpmPackage rec {
   pname = "vs-launcher";
-  version = "1.5.4";
+  version = "1.5.7";
 
   # https://github.com/XurxoMF/vs-launcher.git
   # npm i --package-lock-only
@@ -15,7 +15,7 @@
     owner = "XurxoMF";
     repo = "vs-launcher";
     rev = version;
-    hash = "sha256-+4ZaP6KokKDMqnEleDIqxkgo0soT2Onrvuk3A+vaEXM=";
+    hash = "sha256-KJbzsHUXq78PPtGfeDL07aDYVxezPBOwiSoybzX6zRc=";
   };
 
   npmDepsHash = "sha256-vufwc3B4Xy/oZZ/CIgCnD+Jdr2szoYVbAGtyyaRUXR8=";
@@ -51,7 +51,8 @@
     install -Dm644 $out/share/vs-launcher/resources/app.asar.unpacked/resources/icon.png $out/share/icons/hicolor/512x512/apps/vs-launcher.png
 
     makeWrapper ${electron}/bin/electron $out/bin/vs-launcher \
-      --add-flags $out/share/vs-launcher/resources/app.asar
+      --add-flags $out/share/vs-launcher/resources/app.asar \
+      --prefix UPDATE : false
 
     runHook postInstall
   '';
