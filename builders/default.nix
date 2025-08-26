@@ -3,7 +3,8 @@ pkgs: rec {
   #
   # mkVintageStory {version = "1.20.4"; hash = "sha256-Hgp2u/y2uPnJhAmPpwof76/woFGz4ISUXU+FIRMjMuQ=";}
   # => <Vintage Story derivation>
-  mkVintageStoryV1 = pkgs.callPackage (import ./mk-vintage-story-v1.nix);
+  mkVintageStoryV1 = pkgs.callPackage (import ./mk-vintagestory-v1.nix);
+  mkVintageStoryV2 = pkgs.callPackage (import ./mk-vintagestory-v2.nix);
 
   # Override a Vintage Story derivation to replace .NET 7 with .NET 8.
   #
@@ -20,5 +21,6 @@ pkgs: rec {
     then throw "Versions past 1.18.8 are not packagable using this flake."
     else if versionOlder arg.version "1.21"
     then mkVintageStoryV1 arg
-    else throw "Versions past 1.10.12 are not (yet) packagable using this flake.";
+    else mkVintageStoryV2 arg;
+    # else throw "Versions past 1.10.12 are not (yet) packagable using this flake.";
 }

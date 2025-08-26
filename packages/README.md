@@ -65,13 +65,16 @@ with pkgs.vintagestoryPackages; [
 > ```
 
 ## "`-net8`" packages
-Because .NET 7 has reached End-Of-Life on the 14th of May 2024, it is marked as insecure on nixpkgs.
+Because .NET 7 has reached End-Of-Life on the 14th of May 2024, `vintagestory` is marked as insecure on nixpkgs.
 
 This means that trying to install the game throws an error if you didn't add `dotnet-runtime-7.0.20` to your `permittedInsecurePackages`.
 
 This flake provides packages suffixed with `-net8` for versions up to 1.20.12 that subtitute .NET7 with .NET8.
 
 I did not encounter issues in my playtime with these packages so I assume they are safe to use.
+
+> [!NOTE]
+> As of 1.21, Vintage Story officially uses .NET8 so this is not needed anymore.
 
 ## A new Vintage Story version is out and I want it now !
 You can install pretty much any version with the `mkVintageStory` function.

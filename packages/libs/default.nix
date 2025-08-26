@@ -25,11 +25,10 @@
     v = normalizeVersion (lib.versions.majorMinor version);
   in rec {
     latest = packages."v${v}";
-    # latest-net8 = warn ''
-    #   'latest-net8' is deprecated, please use 'latest' instead.
-    #   As of 1.21, Vintage Story is now built with .NET8.
-    # '' latest;
-    latest-net8 = packages."v${v}-net8";
+    latest-net8 = builtins.warn ''
+      'latest-net8' is deprecated, please use 'latest' instead.
+      As of 1.21, Vintage Story officially uses dotnet8.
+    '' latest;
   };
 in {
   inherit
