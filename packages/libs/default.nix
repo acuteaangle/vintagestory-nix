@@ -29,7 +29,7 @@
     #   'latest-net8' is deprecated, please use 'latest' instead.
     #   As of 1.21, Vintage Story is now built with .NET8.
     # '' latest;
-    latest-net8 = packages."v${v}-net8";
+    # latest-net8 = packages."v${v}-net8";
   };
 in {
   inherit
