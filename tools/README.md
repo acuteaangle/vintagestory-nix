@@ -37,7 +37,7 @@ Vintage Story versions installed inside the app won't start on NixOS, this is wh
 {inputs, ...}: let
   VSPkgs = inputs.vintagestory-nix.packages.x86_64-linux;
 in {
-  imports = [inputs.vintagestory-nix.homeManagerModules.default];
+  imports = [inputs.vintagestory-nix.homeModules.default];
 
   programs.vs-launcher = {
     enable = true; # Install VS Launcher

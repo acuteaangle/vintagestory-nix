@@ -63,7 +63,7 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
 See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/master/tools) for more complete docs.
 ```nix
 {inputs, pkgs, ...}: {
-  imports = [inputs.vintagestory-nix.homeManagerModules.default];
+  imports = [inputs.vintagestory-nix.homeModules.default];
 
   home.packages = [
     pkgs.vintagestoryPackages.rustique
