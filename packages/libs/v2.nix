@@ -6,10 +6,11 @@
   mkVSVersion = {
     version,
     hash,
+    unstable ? false,
   }: let
     v = clib.normalizeVersion version;
     attrs = {
-      "v${v}" = builders.mkVintageStoryV2 {inherit version hash;};
+      "v${v}" = builders.mkVintageStoryV2 {inherit version hash unstable;};
       "v${v}-net8" = builtins.warn ''
         'v${v}-net8' is deprecated, please use 'v${v}' instead. As of 1.21, Vintage Story officially uses dotnet8.
       '' attrs."v${v}";

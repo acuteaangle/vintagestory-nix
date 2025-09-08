@@ -19,6 +19,7 @@
   dotnet-runtime_8,
   version,
   hash,
+  unstable ? false,
 }:
 stdenv.mkDerivation {
   pname = "vintagestory";
@@ -26,9 +27,13 @@ stdenv.mkDerivation {
 
   src = let
     hasType = lib.hasSuffix "sha256-" hash;
+    stability =
+      if unstable
+      then "unstable"
+      else "stable";
   in
     fetchzip {
-      url = "https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_${version}.tar.gz";
+      url = "https://cdn.vintagestory.at/gamefiles/${stability}/vs_client_linux-x64_${version}.tar.gz";
       hash = lib.optionalString hasType hash;
       sha256 = lib.optionalString (! hasType) hash;
     };

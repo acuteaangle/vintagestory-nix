@@ -6,10 +6,11 @@
   mkVSVersion = {
     version,
     hash,
+    unstable ? false,
   }: let
     v = clib.normalizeVersion version;
     attrs = {
-      "v${v}" = builders.mkVintageStoryV1 {inherit version hash;};
+      "v${v}" = builders.mkVintageStoryV1 {inherit version hash unstable;};
       "v${v}-net8" = builders.mkDotnet8 attrs."v${v}";
     };
   in
