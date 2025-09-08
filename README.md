@@ -15,7 +15,7 @@ A flake to help you on your <a href="https://www.vintagestory.at">Vintage Story<
 ## Features
 
 #### 📦 Plenty of Vintage Story packages
-Get the full list using using the following command:
+Get the full list using the following command:
 ```sh
 nix flake show github:PierreBorine/vintagestory-nix
 ```
@@ -25,7 +25,6 @@ nix flake show github:PierreBorine/vintagestory-nix
 #### 🔧 Modding tools with Home Manager modules
 - **VS Launcher** (unfree) - [github](https://github.com/XurxoMF/vs-launcher) - [moddb](https://mods.vintagestory.at/show/mod/16326)
 - **Rustique** (MIT) - [github](https://github.com/Tekunogosu/Rustique) - [moddb](https://mods.vintagestory.at/rustique)
-- More to come...
 
 ## Usage
 Add this flake as an input to yours
@@ -70,8 +69,9 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
     pkgs.vintagestoryPackages.vs-launcher
   ];
 
-  # or
-
+  # Recommended !!
+  # As the builtin game downloader
+  # won't work on NixOS. See the docs.
   programs.vs-launcher = {
     enable = true;
     installedVersions = [
