@@ -34,18 +34,16 @@ Vintage Story versions installed inside the app won't start on NixOS, this is wh
 
 ```nix
 # home.nix
-{inputs, ...}: let
-  VSPkgs = inputs.vintagestory-nix.packages.x86_64-linux;
-in {
+{inputs, pkgs, ...}: {
   imports = [inputs.vintagestory-nix.homeModules.default];
 
   programs.vs-launcher = {
     enable = true; # Install VS Launcher
-    package = VSPkgs.vs-launcher; # default
+    package = pkgs.vintagestoryPackages.vs-launcher; # default
     # Change the directory, relative to $HOME,
     # in which to link installed versions
     gameVersionsDir = ".config/VSLGameVersions"; # default
-    installedVersions = with VSPkgs; [
+    installedVersions = with pkgs.vintagestoryPackages; [
       # Current version I'm playing on with mods
       v1-20-4-net8
 
@@ -56,6 +54,6 @@ in {
   };
 
   # Can still have a normal install
-  home.packages = [VSPkgs.latest];
+  home.packages = [pkgs.vintagestoryPackages.latest];
 }
 ```

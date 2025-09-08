@@ -14,13 +14,15 @@ A flake to help you on your <a href="https://www.vintagestory.at">Vintage Story<
 
 ## Features
 
-#### 📦 Plenty of Vintage Story packages
+#### 📦 All game versions, down to 1.18.8
 Get the full list using the following command:
-```sh
+```shell
 nix flake show github:PierreBorine/vintagestory-nix
 ```
 
-#### 🛡️ .NET 7 free packages
+#### 🧪 Release Candidates (since 1.21)
+
+#### 🛡️ .NET 7 free packages (post 1.21)
 
 #### 🔧 Modding tools with Home Manager modules
 - **VS Launcher** (unfree) - [github](https://github.com/XurxoMF/vs-launcher) - [moddb](https://mods.vintagestory.at/show/mod/16326)
@@ -52,8 +54,9 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
 {pkgs, ...}: {
   home.packages = [
     pkgs.vintagestoryPackages.v1-20-12
-    pkgs.vintagestoryPackages.v1-19
-    pkgs.vintagestoryPackages.latest
+    pkgs.vintagestoryPackages.v1-21-1-rc-2
+    pkgs.vintagestoryPackages.v1-19  # ignores RCs
+    pkgs.vintagestoryPackages.latest # ignores RCs
   ];
 }
 ```
