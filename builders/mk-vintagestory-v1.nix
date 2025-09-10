@@ -72,6 +72,15 @@ stdenv.mkDerivation {
       comment = "Innovate and explore in a sandbox world";
       categories = ["Game"];
     })
+    (makeDesktopItem {
+      name = "vsmodinstall-handler";
+      desktopName = "Vintage Story 1-click Mod Install Handler";
+      comment = "Handler for vintagestorymodinstall:// URI scheme";
+      exec = "vintagestory -i %u";
+      mimeTypes = ["x-scheme-handler/vintagestorymodinstall"];
+      noDisplay = true;
+      terminal = false;
+    })
   ];
 
   installPhase = ''
