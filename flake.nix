@@ -60,13 +60,5 @@
       all = deprecateTo self.homeModules.all;
       vs-launcher = deprecateTo self.homeModules.vs-launcher;
     };
-
-    devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [
-        prefetch-npm-deps
-        nix-prefetch
-        nodejs
-      ];
-    };
   };
 }
