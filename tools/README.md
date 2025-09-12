@@ -15,6 +15,7 @@ This directory contains packages and home-manager modules for some modding tools
 ## Packages
 - `rustique`
 - `vs-launcher`
+- `vsmodelcreator`
 
 ## Rustique
 [Rustique](https://github.com/Tekunogosu/Rustique) is a Rust command-line interface,
@@ -57,3 +58,13 @@ Vintage Story versions installed inside the app won't start on NixOS, this is wh
   home.packages = [pkgs.vintagestoryPackages.latest];
 }
 ```
+
+## VS Model Creator
+[VS Model Creator](https://github.com/anegostudios/vsmodelcreator) is the official tool for creating and animating blocks, items and entities for Vintage Story.
+
+[Here](https://wiki.vintagestory.at/Modding:VS_Model_Creator) is a link to the wiki with guides on how to use the software.
+
+> [!NOTE]
+> I haven't extensively tested this one but it worked well in my toying.
+>
+> Anyhow, if you find any packaging-related issue, do not hesitate reporting it.
