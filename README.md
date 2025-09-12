@@ -22,7 +22,7 @@ nix flake show github:PierreBorine/vintagestory-nix
 
 #### 🧪 Release Candidates (since 1.21)
 
-#### 🛡️ .NET 7 free packages (post 1.21)
+#### 🛡️ .NET 7 free packages (pre 1.21)
 
 #### 🔧 Modding tools with Home Manager modules
 - **VS Launcher** (unfree) - [github](https://github.com/XurxoMF/vs-launcher) - [moddb](https://mods.vintagestory.at/show/mod/16326)
