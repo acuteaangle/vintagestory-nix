@@ -17,6 +17,11 @@ This directory contains packages and home-manager modules for some modding tools
 - `vs-launcher`
 - `vsmodelcreator`
 
+## Home-Manager modules
+- `all` (all modules)
+- `default` (link to `all`)
+- `vs-launcher`
+
 ## Rustique
 [Rustique](https://github.com/Tekunogosu/Rustique) is a Rust command-line interface,
 for managing and updating Vintage Story mods and their dependencies.
