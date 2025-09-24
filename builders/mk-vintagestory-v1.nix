@@ -26,7 +26,6 @@ stdenv.mkDerivation {
   inherit version;
 
   src = let
-    hasType = lib.hasSuffix "sha256-" hash;
     stability =
       if unstable
       then "unstable"
@@ -34,8 +33,12 @@ stdenv.mkDerivation {
   in
     fetchzip {
       url = "https://cdn.vintagestory.at/gamefiles/${stability}/vs_client_linux-x64_${version}.tar.gz";
-      hash = lib.optionalString hasType hash;
-      sha256 = lib.optionalString (! hasType) hash;
+      ${
+        if lib.hasSuffix "sha256-" hash
+        then "hash"
+        else "sha256"
+      } =
+        hash;
     };
 
   nativeBuildInputs = [
