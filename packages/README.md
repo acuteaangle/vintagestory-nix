@@ -88,6 +88,12 @@ to the point it requiers an updated derivation.
       version = "1.24.8";
       hash = "sha256-Hgp2u/y2uPnJhAmPpwof76/woFGz4ISUXU+FIRMjMuQ=";
     })
+    # Unstable release (release candidate, ...)
+    (inputs.vintagestory-nix.lib.mkVintageStory {
+      version = "1.28.4-rc.2";
+      hash = "sha256-fCSJu7qnU8kC4tisJLlUQV9zlET7oDU/MkbCpu7ISzg=";
+      unstable = true;
+    })
   ];
 }
 ```
