@@ -47,12 +47,13 @@ with pkgs.vintagestoryPackages; [
 ##### Example
 ```nix
 {pkgs, ...}: {
-  home.packages = [pkgs.vintagestoryPackages.latest-net8];
+  home.packages = [pkgs.vintagestoryPackages.latest];
 
   programs.vs-launcher = {
     enable = true;
-    installedVersions = with pkgs.vintagestoryPackages; [
-      v1-20-4-net8
+    settings.gameVersions = with pkgs.vintagestoryPackages; [
+      v1-19-6-net8
+      v1-21-0
     ];
   };
 }
@@ -65,9 +66,10 @@ with pkgs.vintagestoryPackages; [
 > ```
 
 ## "`-net8`" packages
-Because .NET 7 has reached End-Of-Life on the 14th of May 2024, `vintagestory` is marked as insecure on nixpkgs.
+Before 1.21, Vintage Story used .NET 7 which had reached End-Of-Life on the 14th of May 2024,
+this means its package was marked as insecure on nixpkgs.
 
-This means that trying to install the game throws an error if you didn't add `dotnet-runtime-7.0.20` to your `permittedInsecurePackages`.
+Trying to install an older version throws an error if you didn't add `dotnet-runtime-7.0.20` to your `permittedInsecurePackages`.
 
 This flake provides packages suffixed with `-net8` for versions up to 1.20.12 that subtitute .NET7 with .NET8.
 

@@ -32,12 +32,10 @@ It works the same way as an Operating System package manager.
 [VS Launcher](https://github.com/XurxoMF/vs-launcher) is an Electron-based game versions and mods manager.<br>
 You can easily create isolated installations of Vintage Story to have different modpacks at different game versions.
 
-Vintage Story versions installed inside the app won't start on NixOS, this is why a Home Manager module is provided.
-
-#### Maximal example usage
 > [!IMPORTANT]
-> Game versions installed using `installedVersions` have to be manually registered inside VS Launcher.
+> Vintage Story versions installed through the in-app downloader won't start on NixOS.
 
+#### Maximal example
 ```nix
 # home.nix
 {inputs, pkgs, ...}: {
@@ -46,20 +44,25 @@ Vintage Story versions installed inside the app won't start on NixOS, this is wh
   programs.vs-launcher = {
     enable = true; # Install VS Launcher
     package = pkgs.vintagestoryPackages.vs-launcher; # default
-    # Change the directory, relative to $HOME,
-    # in which to link installed versions
-    gameVersionsDir = ".config/VSLGameVersions"; # default
-    installedVersions = with pkgs.vintagestoryPackages; [
-      # Current version I'm playing on with mods
-      v1-20-4-net8
+    settings = {
+      # These are 'null' by default
+      installationsDir = "${config.xdg.configHome}/VSLauncher/installations";
+      versionsDir = "${config.xdg.configHome}/VSLauncher/gameVersions";
+      backupDir = "${config.xdg.configHome}/VSLauncher/backups";
 
-      # I have an active save with some friends
-      # I don't want to mess with updating mods
-      v1-19-8-net8
-    ];
+      # List of Vintage Story packages to install in VS Launcher
+      gameVersions = with pkgs.vintagestoryPackages; [
+        # Old save with lots of mods, some of them
+        # never got updated
+        v1-19-6-net8
+
+        # I have an active save with some friends
+        v1-21-0
+      ];
+    };
   };
 
-  # Can still have a normal install
+  # Can still have a standalone install
   home.packages = [pkgs.vintagestoryPackages.latest];
 }
 ```

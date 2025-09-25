@@ -75,10 +75,10 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
 
   # Recommended !!
   # As the builtin game downloader
-  # won't work on NixOS. See the docs.
+  # won't work on NixOS.
   programs.vs-launcher = {
     enable = true;
-    installedVersions = [
+    settings.gameVersions = [
       pkgs.vintagestoryPackages.v1-19-4
     ];
   };
