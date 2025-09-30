@@ -60,5 +60,7 @@
       all = deprecateTo self.homeModules.all;
       vs-launcher = deprecateTo self.homeModules.vs-launcher;
     };
+
+    nixosModules.default = import ./module;
   };
 }
