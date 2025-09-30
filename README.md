@@ -85,6 +85,10 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
 }
 ```
 
+## Installing mods with Nix
+This flake does not provide a way to declaratively install mods with Nix.
+Fortunately for you, [vs2nix](https://github.com/dtomvan/vs2nix) is another Vintage Story flake that packages the top 400 mods of modDB.
+
 ## Thanks
 - to the [Vintage Story team](https://www.vintagestory.at/aboutus.html) for their incredible game
 - to [XurxoMF](https://github.com/XurxoMF) for making VS Launcher
