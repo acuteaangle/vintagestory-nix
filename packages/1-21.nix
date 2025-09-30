@@ -1,5 +1,40 @@
 mkVSVersion: [
   (mkVSVersion {
+    version = "1.21.0-rc.1";
+    hash = "sha256-TALcccfOUYFaZTEl4Mf0DeWlpuLB81vTrf/JK0O1UgY=";
+    unstable = true;
+  })
+  (mkVSVersion {
+    version = "1.21.0-rc.2";
+    hash = "sha256-FFTD/hqOplc82tbgbXvX4akxFr2oGynz3YoqxBtzUps=";
+    unstable = true;
+  })
+  (mkVSVersion {
+    version = "1.21.0-rc.3";
+    hash = "sha256-st/8UsJROlt36IYoQ8kpIXTIyKlViWTBnqAmtLMFIyY=";
+    unstable = true;
+  })
+  (mkVSVersion {
+    version = "1.21.0-rc.4";
+    hash = "sha256-NaMVO6MR43qnsQz4eJhAWepcfHT9+TQtVGMXR+NcxFI=";
+    unstable = true;
+  })
+  (mkVSVersion {
+    version = "1.21.0-rc.5";
+    hash = "sha256-w6bk3ROS62wyEa+3VChGjEaYwzkrNgkFCldW3J8QRdU=";
+    unstable = true;
+  })
+  (mkVSVersion {
+    version = "1.21.0-rc.6";
+    hash = "sha256-+UD6jn8cTd8k7916gc6WKoIxNC4cNmGMq5MTR7hta60=";
+    unstable = true;
+  })
+  (mkVSVersion {
+    version = "1.21.0-rc.7";
+    hash = "sha256-Srs5faDNmGYxOI8kHvI6BEdTdSTtCgdRTg4YeHq4zs4=";
+    unstable = true;
+  })
+  (mkVSVersion {
     version = "1.21.0";
     hash = "1c6dibxx3q7b3rfn9sigb1h2ijdpzxrzxrih6r3k8wl9xfn7mnh1";
   })

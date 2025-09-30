@@ -20,7 +20,7 @@ Get the full list using the following command:
 nix flake show github:PierreBorine/vintagestory-nix
 ```
 
-#### 🧪 Release Candidates (since 1.21)
+#### 🧪 Release Candidates
 
 #### 🛡️ .NET 7 free packages (pre 1.21)
 
