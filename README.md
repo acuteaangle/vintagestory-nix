@@ -79,7 +79,7 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
   programs.vs-launcher = {
     enable = true;
     settings.gameVersions = [
-      pkgs.vintagestoryPackages.v1-19-4
+      pkgs.vintagestoryPackages.v1-21-1
     ];
   };
 }
@@ -89,11 +89,12 @@ See the [relevant README](https://github.com/PierreBorine/vintagestory-nix/tree/
 See the [module file](https://github.com/PierreBorine/vintagestory-nix/tree/master/module/default.nix) for more infos
 ```nix
 # configuration.nix
-{inputs, ...}: {
+{inputs, pkgs, ...}: {
   imports = [inputs.vintagestory-nix.nixosModules.default];
 
   services.vintagestory = {
     enable = true;
+    package = pkgs.vintagestoryPackages.v1-21-0;
     openFirewall = true;
   };
 }
