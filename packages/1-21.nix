@@ -62,4 +62,9 @@ mkVSVersion: [
     hash = "sha256-G/IjKF6VUEw6PKY8mgG/zVoozW9vyuPanhkPxStntZ4=";
     unstable = true;
   })
+  (mkVSVersion {
+    version = "1.21.2-rc.3";
+    hash = "sha256-bso5NwzDhtaZJdlR8LbaLtOM5WckirEtYwM+r1F7GYY=";
+    unstable = true;
+  })
 ]
