@@ -79,4 +79,8 @@ mkVSVersion: [
     version = "1.21.4";
     hash = "sha256-pSlxkQ0vrbsO0S0iPy5mYScQO46kMyn18d8X0httY2k=";
   })
+  (mkVSVersion {
+    version = "1.21.5";
+    hash = "sha256-jsAuu5676DXlO7tRJj5d8At/J2W3/M+zt1rpNLCIJaM=";
+  })
 ]
