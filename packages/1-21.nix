@@ -90,6 +90,6 @@ mkVSVersion: [
   })
   (mkVSVersion {
     version = "1.21.6";
-    hash = "sha256-sl7RaVbYXD9rzyir+8eyNmjD+vH98CfPjLrY8qvZoZU=";
+    hash = "sha256-m2cMqA7T4bfbl1XdKyqHEuCd5MuLvt3nSYxbzC2fg3s=";
   })
 ]
