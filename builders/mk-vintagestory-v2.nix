@@ -21,7 +21,7 @@
   hash,
   unstable ? false,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation (finalAttrs: {
   pname = "vintagestory";
   inherit version;
 
@@ -46,7 +46,7 @@ stdenv.mkDerivation {
     copyDesktopItems
   ];
 
-  env.runtimeLibs = lib.makeLibraryPath (
+  runtimeLibs =
     [
       gtk2
       sqlite
@@ -59,12 +59,11 @@ stdenv.mkDerivation {
       pipewire
       libpulseaudio
     ]
-    ++ (with xorg; [
-      libX11
-      libXi
-      libXcursor
-    ])
-  );
+    ++ [
+      xorg.libX11
+      xorg.libXi
+      xorg.libXcursor
+    ];
 
   desktopItems = [
     (makeDesktopItem {
@@ -100,15 +99,16 @@ stdenv.mkDerivation {
   '';
 
   preFixup = let
+    runtimeLibs' = lib.strings.makeLibraryPath finalAttrs.runtimeLibs;
     wrapperFlags = lib.trim ''
-      --prefix LD_LIBRARY_PATH : "''${runtimeLibs[@]}" \
+      --prefix LD_LIBRARY_PATH : "${runtimeLibs'}" \
       --set-default mesa_glthread true
     '';
   in ''
-    makeWrapper ${lib.getExe dotnet-runtime_8} $out/bin/vintagestory \
+    makeWrapper ${lib.meta.getExe dotnet-runtime_8} $out/bin/vintagestory \
       ${wrapperFlags} \
       --add-flags $out/share/vintagestory/Vintagestory.dll
-    makeWrapper ${lib.getExe dotnet-runtime_8} $out/bin/vintagestory-server \
+    makeWrapper ${lib.meta.getExe dotnet-runtime_8} $out/bin/vintagestory-server \
       ${wrapperFlags} \
       --add-flags $out/share/vintagestory/VintagestoryServer.dll
 
@@ -123,6 +123,7 @@ stdenv.mkDerivation {
     homepage = "https://www.vintagestory.at";
     license = lib.licenses.unfree;
     sourceProvenance = [lib.sourceTypes.binaryBytecode];
+    platforms = ["x86_64-linux"];
     mainProgram = "vintagestory";
   };
-}
+})
