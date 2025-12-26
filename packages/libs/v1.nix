@@ -17,7 +17,8 @@
     attrs;
 
   mkMinorVersion = versions: let
-    highestVersionSet = clib.highestVersion versions;
+    versions' = map mkVSVersion versions;
+    highestVersionSet = clib.highestVersion versions';
 
     # "1.20.4" => "1-20"
     majorMinor =
@@ -30,7 +31,9 @@
       "v${majorMinor}-net8" = highestVersionSet."v${highestVersion}-net8";
     };
   in
-    clib.recursiveMergeAttrsList ([latestVersion] ++ versions);
+    clib.recursiveMergeAttrsList ([latestVersion] ++ versions');
+
+  importMinorVersion = f: mkMinorVersion (import f);
 in {
-  inherit mkVSVersion mkMinorVersion;
+  inherit mkMinorVersion importMinorVersion;
 }

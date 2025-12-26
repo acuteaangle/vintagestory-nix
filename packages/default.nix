@@ -12,8 +12,8 @@
 in
   recursiveMergeAttrsList [
     (mkLatest "1.21") # WARN: Must be changed manually
-    (v2.mkMinorVersion (import ./1-21.nix v2.mkVSVersion))
-    (v1.mkMinorVersion (import ./1-20.nix v1.mkVSVersion))
-    (v1.mkMinorVersion (import ./1-19.nix v1.mkVSVersion))
-    (v1.mkMinorVersion (import ./1-18.nix v1.mkVSVersion))
+    (v2.importMinorVersion ./1-21.nix)
+    (v1.importMinorVersion ./1-20.nix)
+    (v1.importMinorVersion ./1-19.nix)
+    (v1.importMinorVersion ./1-18.nix)
   ]
