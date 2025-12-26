@@ -35,7 +35,7 @@
       // import ./tools pkgs
       // import ./packages {
         inherit (self.lib) builders;
-        inherit packages lib;
+        inherit lib;
       };
 
     overlays.default = final: prev: {
@@ -43,7 +43,6 @@
         {default = final.vintagestoryPackages.latest;}
         // import ./tools prev
         // import ./packages {
-          packages = final.vintagestoryPackages;
           builders = import ./builders prev;
           inherit (prev) lib;
         };

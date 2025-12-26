@@ -1,7 +1,4 @@
-{
-  packages,
-  lib,
-}: let
+{lib}: let
   inherit
     (builtins)
     foldl'
@@ -23,8 +20,8 @@
   normalizeVersion = replaceStrings ["."] ["-"];
 
   getVersion = set: (head (attrValues set)).version;
-  highestVersion = versions': let
-    versions = filter (el: match ".*-rc\.[0-9]{1,2}" (getVersion el) == null) versions';
+  highestVersion = versions: let
+    versions' = filter (el: match ".*-rc\.[0-9]{1,2}" (getVersion el) == null) versions;
   in
     foldl' (
       maxSet: set: let
@@ -34,22 +31,27 @@
         if compareVersions maxSetVersion setVersion == 1
         then maxSet // {version = maxSetVersion;}
         else set // {version = setVersion;}
-    ) (head versions)
-    versions;
+    ) (head versions')
+    versions';
 
-  mkLatest = version: let
-    v = normalizeVersion (majorMinor version);
-  in rec {
-    latest = packages."v${v}";
-    latest-net8 = warn ''
-      'latest-net8' is deprecated, please use 'latest' instead. As of 1.21, Vintage Story officially uses dotnet8.
-    '' latest;
-  };
+  mkPackageSet = packages: let
+    latest-minor = majorMinor (highestVersion packages).version;
+    packages-set = recursiveMergeAttrsList packages;
+  in
+    packages-set
+    // rec {
+      latest = packages-set."v${normalizeVersion latest-minor}";
+      latest-net8 =
+        warn ''
+          'latest-net8' is deprecated, please use 'latest' instead. As of 1.21, Vintage Story officially uses dotnet8.
+        ''
+        latest;
+    };
 in {
   inherit
     recursiveMergeAttrsList
     normalizeVersion
     highestVersion
-    mkLatest
+    mkPackageSet
     ;
 }
