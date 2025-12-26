@@ -78,6 +78,22 @@ I did not encounter issues in my playtime with these packages so I assume they a
 > [!NOTE]
 > As of 1.21, Vintage Story officially uses .NET8 so this is not needed anymore.
 
+## Use Wayland instead of X11/XWayland
+[Since 1.21](https://www.vintagestory.at/forums/topic/16744-v1210-rc3-story-chapter-2-redux/#comment-80623), Vintage Story supports running a Wayland native window.
+
+Please note that X11 is still the default as VS on Wayland currently has scaling issues and generally less FPS.
+```nix
+{pkgs, ...}: {
+  home.packages = [
+    (pkgs.vintagestoryPackages.v1-21.override {
+      waylandSupport = true;
+      x11Support = false; # optional
+    })
+  ];
+}
+```
+Enabling both will make Vintage Story default to Wayland and fallback to X11.
+
 ## A new Vintage Story version is out and I want it now !
 You can install pretty much any version with the `mkVintageStory` function.
 
