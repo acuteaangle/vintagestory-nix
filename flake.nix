@@ -49,15 +49,12 @@
         };
     };
 
-    homeModules =
-      {default = self.homeModules.all;}
-      // import ./tools/hm.nix {inherit packages;};
+    homeModules = import ./tools/hm.nix {inherit packages;};
 
     homeManagerModules = let
       deprecateTo = builtins.warn "vintagestory-nix: `homeManagerModules` is deprecated, please use `homeModules` instead.";
     in {
-      default = deprecateTo self.homeModules.default;
-      all = deprecateTo self.homeModules.all;
+      default = deprecateTo self.homeModules.vs-launcher;
       vs-launcher = deprecateTo self.homeModules.vs-launcher;
     };
 

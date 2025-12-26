@@ -18,8 +18,7 @@ This directory contains packages and home-manager modules for some modding tools
 - `vsmodelcreator`
 
 ## Home-Manager modules
-- `all` (all modules)
-- `default` (link to `all`)
+- `default` (all modules)
 - `vs-launcher`
 
 ## Rustique
@@ -39,7 +38,7 @@ You can easily create isolated installations of Vintage Story to have different 
 ```nix
 # home.nix
 {inputs, pkgs, ...}: {
-  imports = [inputs.vintagestory-nix.homeModules.default];
+  imports = [inputs.vintagestory-nix.homeModules.vs-launcher];
 
   programs.vs-launcher = {
     enable = true; # Install VS Launcher
