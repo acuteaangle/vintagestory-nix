@@ -5,13 +5,8 @@
   makeWrapper,
   makeDesktopItem,
   copyDesktopItems,
-  gtk2,
-  sqlite,
-  openal,
   cairo,
   libGLU,
-  SDL2,
-  freealut,
   libglvnd,
   pipewire,
   libpulseaudio,
@@ -58,13 +53,8 @@ stdenv.mkDerivation (finalAttrs: {
 
   runtimeLibs =
     [
-      gtk2
-      sqlite
-      openal
       cairo
       libGLU
-      SDL2
-      freealut
       libglvnd
       pipewire
       libpulseaudio
