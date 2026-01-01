@@ -13,7 +13,7 @@
   dotnet-runtime_8,
   x11Support ? true,
   xorg ? null,
-  waylandSupport ? true,
+  waylandSupport ? false,
   wayland ? null,
   libxkbcommon ? null,
   version,
