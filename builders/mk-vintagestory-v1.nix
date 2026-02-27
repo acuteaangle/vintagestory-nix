@@ -19,18 +19,68 @@
   dotnet-runtime_7,
   version,
   hash,
-  unstable ? false,
+  unstable ? null,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "vintagestory";
   inherit version;
 
-  src = let
-    stability =
-      if unstable
-      then "unstable"
-      else "stable";
-  in
+  src =
+    let
+      checkAssertWarnIf =
+        cond: assertions: warnings: val:
+        if cond then lib.asserts.checkAssertWarn assertions warnings val else val;
+      stability_unchecked = (
+        if builtins.length (builtins.splitVersion version) < 4 then
+          "stable"
+        else if builtins.elemAt (builtins.splitVersion version) 3 == "pre" then
+          "pre"
+        else
+          "unstable"
+      );
+      stability =
+        checkAssertWarnIf (unstable != null)
+          [
+            {
+              assertion = if unstable then stability_unchecked == "unstable" else stability_unchecked == "stable";
+              message = ''
+                vintagestory-nix: Calling `mkVintageStory` with `unstable` is deprecated.
+                Version stability is now determined automatically from the version string.
+
+                However, the value passed for `unstable` does not match the inferred value.
+
+                Version: "${version}"
+                Explicit stability: { stability = ${if unstable then "unstable" else "stable"}; }
+                Inferred stability: { stability = "${stability_unchecked}"; }
+              ''
+              + (
+                if stability_unchecked == "pre" then
+                  ''
+
+                    Note: prerelease versions were never supported via the `unstable` arg;
+                    therefore, a prerelease will _always_ fail this assertion if `unstable`
+                    is defined, regardless of value.
+                  ''
+                else
+                  ""
+              );
+            }
+          ]
+          [
+            ''
+              vintagestory-nix: Calling `mkVintageStory` with `unstable` is deprecated.
+              Version stability is now determined automatically from the version string.
+
+              If you are seeing this warning, then it is safe to remove this argument,
+              as the explicit value equals the inferred value.
+
+              Version: "${version}"
+              Explicit stability: { stability = ${if unstable then "unstable" else "stable"}; }
+              Inferred stability: { stability = "${stability_unchecked}"; }
+            ''
+          ]
+          stability_unchecked;
+    in
     fetchzip {
       url = "https://cdn.vintagestory.at/gamefiles/${stability}/vs_client_linux-x64_${version}.tar.gz";
       ${
