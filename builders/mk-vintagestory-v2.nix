@@ -19,6 +19,7 @@
   version,
   hash,
   unstable ? null,
+  imagemagick,
 }:
 
 assert x11Support || waylandSupport;
@@ -144,7 +145,13 @@ stdenv.mkDerivation (finalAttrs: {
 
     mkdir -p $out/share/vintagestory $out/bin $out/share/pixmaps $out/share/fonts/truetype
     cp -r * $out/share/vintagestory
-    cp $out/share/vintagestory/assets/gameicon.xpm $out/share/pixmaps/vintagestory.xpm
+
+    if [ -f "$out/share/vintagestory/assets/gameicon.xpm" ]; then
+      cp $out/share/vintagestory/assets/gameicon.xpm $out/share/pixmaps/vintagestory.xpm
+    else
+      ${lib.getExe imagemagick} $out/share/vintagestory/assets/gameicon.png $out/share/pixmaps/vintagestory.xpm
+    fi
+
     cp $out/share/vintagestory/assets/game/fonts/*.ttf $out/share/fonts/truetype
 
     rm -rvf $out/share/vintagestory/{install,run,server}.sh
